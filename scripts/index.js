@@ -1,15 +1,25 @@
 let bagItem = [];
-displayItemsOnHomePage();
-displayBagItemCount();
+onLoad();
+
+
+function onLoad() {
+  let bagItemStr = localStorage.getItem('bagItem');
+  bagItem = bagItemStr ? JSON.parse(bagItemStr) : [];
+  displayItemsOnHomePage();
+  displayBagItemCount();
+
+}
 
 function addToBag(itemId) {
   bagItem.push(itemId);
+  localStorage.setItem('bagItem', JSON.stringify(bagItem));
   displayBagItemCount();
 }
 
 function displayBagItemCount() {
   let bagItemCountElement = document.querySelector('.bag-item-count');
   if(bagItem.length>0){
+    bagItemCountElement.style.visibility = 'visible';
     bagItemCountElement.innerText = bagItem.length;
   } else {
     bagItemCountElement.style.visibility = 'hidden';
@@ -19,7 +29,9 @@ function displayBagItemCount() {
 
 function displayItemsOnHomePage() {
   let itemContainerElement = document.querySelector('.items-container');
-  
+  if(!itemContainerElement) {
+    return;
+  }
   let innerHTML = '';
   items.forEach(item => {
     innerHTML += `
