@@ -1,4 +1,4 @@
-let bagItems;
+let bagItems = [];
 onLoad();
 
 function onLoad() {

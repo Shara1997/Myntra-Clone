@@ -1,5 +1,5 @@
 const CONVENIENCE_FEES = 99;
-let bagItemObjects;
+let bagItemObjects = [];
 onLoad();
 
 function onLoad() {
@@ -64,6 +64,7 @@ function loadBagItemObjects() {
 function displayBagItems() {
   let containerElement = document.querySelector('.bag-items-container');
   let innerHTML = '';
+  console.log(bagItemObjects);
   bagItemObjects.forEach(bagItem => {
     innerHTML += generateItemHTML(bagItem);
   });
@@ -103,4 +104,4 @@ function generateItemHTML(item) {
 
     <div class="remove-from-cart" onclick="removeFromBag(${item.id})">X</div>
   </div>`;
-}
+};
