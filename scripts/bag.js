@@ -6,6 +6,7 @@ function onLoad() {
   loadBagItemObjects();
   displayBagItems();
   displayBagSummary();
+  generateDeliveryDate();
 }
 
 function displayBagSummary() {
@@ -61,6 +62,19 @@ function loadBagItemObjects() {
   console.log(bagItemObjects);
 }
 
+function generateDeliveryDate() {
+  const currentDate = new Date();
+  const deliveryTime = 7;
+  let deliveryDate = new Date(currentDate);
+  deliveryDate.setDate(currentDate.getDate() + deliveryTime);
+
+  const deliveryOption = {year: 'numeric', month: 'long', day: 'numeric'};
+  const formattedDeliveryDate = deliveryDate.toLocaleDateString('en-IN', deliveryOption);
+
+  let dateElement = document.querySelector('.delivery-details-days');
+  dateElement.innerText = formattedDeliveryDate;
+}
+
 function displayBagItems() {
   let containerElement = document.querySelector('.bag-items-container');
   let innerHTML = '';
@@ -98,7 +112,7 @@ function generateItemHTML(item) {
       </div>
       <div class="delivery-details">
         Delivery by
-        <span class="delivery-details-days">${item.delivery_date}</span>
+        <span class="delivery-details-days"></span>
       </div>
     </div>
 
