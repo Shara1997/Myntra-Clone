@@ -138,3 +138,11 @@
 .item-right-part .company, .item-right-part .current-price{
   font-weight: 700;
 }
+
+.discount-percentage{
+  color: #f16565;
+}
+
+footer{
+  margin-top: 20px;
+}
